@@ -1,40 +1,38 @@
-// PA17_BusStops3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// PA1_SortingAbsIntegers.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
-#include<string>
-#include<map>
+#include<vector>
 #include<algorithm>
-#include<set>
 
 using namespace std;
 
+void PrintVector(const vector<int>& v) {
+	for (const int& s : v) {
+		cout << s << " ";
+	}
+	cout << endl;
+}
+
 int main()
 {
-	int NumberOfQueries;
-	cin >> NumberOfQueries;
+	int Size;
+	cin >> Size;
 
-	map<set<string>, int> Routes;
+	vector<int> vec(Size);
 
-	for (int i = 0; i < NumberOfQueries; ++i) {
-		int AmountOfStops;
-		cin >> AmountOfStops;
-		set<string> stops;
-		for (int stp = 0; stp < AmountOfStops; ++stp) {
-			string stop;
-			cin >> stop;
-			stops.insert(stop);
-		}
-
-		if (Routes.count(stops) == 0) {
-			Routes[stops] = Routes.size()+1;
-			cout << "New bus " << Routes.size() << endl;
-		}
-		else {
-			cout << "Already exists for " << Routes[stops] << endl;
-		}
+	for (int& num : vec) {
+		cin >> num;
 	}
 
+	sort(begin(vec), end(vec), [](int x, int y) {
+		if (abs(x) < abs(y)) {
+			return true;
+		}
+		return false;
+		});
+
+	PrintVector(vec);
 	return 0;
 }
 

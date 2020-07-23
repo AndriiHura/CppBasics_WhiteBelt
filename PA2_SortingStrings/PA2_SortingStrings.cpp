@@ -1,39 +1,45 @@
-// PA17_BusStops3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// PA2_SortingStrings.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
-#include<string>
-#include<map>
-#include<algorithm>
-#include<set>
+#include<string>    
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
+void PrintVector(const vector<string>& v) {
+	for (const string& s : v) {
+		cout << s << " ";
+	}
+	cout << endl;
+}
+
+void StringToLower(string& s1) {
+	for (auto& c : s1) {
+		c = tolower(c);
+	}
+}
+
 int main()
 {
-	int NumberOfQueries;
-	cin >> NumberOfQueries;
-
-	map<set<string>, int> Routes;
-
-	for (int i = 0; i < NumberOfQueries; ++i) {
-		int AmountOfStops;
-		cin >> AmountOfStops;
-		set<string> stops;
-		for (int stp = 0; stp < AmountOfStops; ++stp) {
-			string stop;
-			cin >> stop;
-			stops.insert(stop);
-		}
-
-		if (Routes.count(stops) == 0) {
-			Routes[stops] = Routes.size()+1;
-			cout << "New bus " << Routes.size() << endl;
-		}
-		else {
-			cout << "Already exists for " << Routes[stops] << endl;
-		}
+	int NumberOfLetters;
+	cin >> NumberOfLetters;
+	vector<string> vec(NumberOfLetters);
+	for (string& s : vec) {
+		cin >> s;
 	}
+
+	sort(begin(vec), end(vec), [](string s1, string s2) {
+		StringToLower(s1);
+		StringToLower(s2);
+		if (s1 < s2) {
+			return true;
+		}
+		return false;
+		});
+	PrintVector(vec);
+	
 
 	return 0;
 }

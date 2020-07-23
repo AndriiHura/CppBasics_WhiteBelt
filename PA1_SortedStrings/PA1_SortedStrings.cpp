@@ -1,40 +1,45 @@
-// PA17_BusStops3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// PA1_SortedStrings.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
 #include<string>
-#include<map>
 #include<algorithm>
-#include<set>
+#include<vector>
 
 using namespace std;
 
-int main()
-{
-	int NumberOfQueries;
-	cin >> NumberOfQueries;
-
-	map<set<string>, int> Routes;
-
-	for (int i = 0; i < NumberOfQueries; ++i) {
-		int AmountOfStops;
-		cin >> AmountOfStops;
-		set<string> stops;
-		for (int stp = 0; stp < AmountOfStops; ++stp) {
-			string stop;
-			cin >> stop;
-			stops.insert(stop);
-		}
-
-		if (Routes.count(stops) == 0) {
-			Routes[stops] = Routes.size()+1;
-			cout << "New bus " << Routes.size() << endl;
-		}
-		else {
-			cout << "Already exists for " << Routes[stops] << endl;
-		}
+class SortedStrings {
+public:
+	void AddString(const string& s) {
+		ListOfStrings.push_back(s);
 	}
 
+	vector<string> GetSortedStrings() {
+		sort(begin(ListOfStrings), end(ListOfStrings));
+		return ListOfStrings;
+	}
+private:
+	vector<string> ListOfStrings;
+};
+
+void PrintSortedStrings(SortedStrings& strings) {
+	for (const string& s : strings.GetSortedStrings()) {
+		cout << s << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	SortedStrings strings;
+
+	strings.AddString("first");
+	strings.AddString("third");
+	strings.AddString("second");
+	PrintSortedStrings(strings);
+
+	strings.AddString("second");
+	PrintSortedStrings(strings);
 	return 0;
 }
 

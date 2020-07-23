@@ -1,39 +1,49 @@
-// PA17_BusStops3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// PA4_String.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
+#include<vector>
 #include<string>
-#include<map>
-#include<algorithm>
-#include<set>
 
 using namespace std;
 
+class ReversibleString {
+public:
+	ReversibleString() {
+		str = "";
+	}
+
+	ReversibleString(const string& inputValue) {
+		str = inputValue;
+	}
+
+	void Reverse() {
+		string tmp;
+		for (int i = str.length() - 1; i >= 0; --i) {
+			tmp += str[i];
+		}
+		str = tmp;
+	}
+	string ToString() const {
+		return str;
+	}
+private:
+	string str;
+};
+
 int main()
 {
-	int NumberOfQueries;
-	cin >> NumberOfQueries;
+	ReversibleString s("live");
+	s.Reverse();
+	cout << s.ToString() << endl;
 
-	map<set<string>, int> Routes;
+	s.Reverse();
+	const ReversibleString& s_ref = s;
+	string tmp = s_ref.ToString();
+	cout << tmp << endl;
 
-	for (int i = 0; i < NumberOfQueries; ++i) {
-		int AmountOfStops;
-		cin >> AmountOfStops;
-		set<string> stops;
-		for (int stp = 0; stp < AmountOfStops; ++stp) {
-			string stop;
-			cin >> stop;
-			stops.insert(stop);
-		}
-
-		if (Routes.count(stops) == 0) {
-			Routes[stops] = Routes.size()+1;
-			cout << "New bus " << Routes.size() << endl;
-		}
-		else {
-			cout << "Already exists for " << Routes[stops] << endl;
-		}
-	}
+	ReversibleString empty;
+	cout << '"' << empty.ToString() << '"' << endl;
 
 	return 0;
 }

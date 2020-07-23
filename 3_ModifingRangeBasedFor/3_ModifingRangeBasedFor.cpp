@@ -1,39 +1,35 @@
-// PA17_BusStops3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// 3_ModifingRangeBasedFor.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
+#include<vector>
 #include<string>
-#include<map>
 #include<algorithm>
-#include<set>
 
 using namespace std;
 
+void PrintVector(const vector<int>& v, const string& title) {
+	cout << title << ": ";
+	for (const int& s : v) {
+		cout << s << " ";
+	}
+	cout << endl;
+}
+
 int main()
 {
-	int NumberOfQueries;
-	cin >> NumberOfQueries;
+	vector<int> n = { 1,3,2,5,4 };
+	PrintVector(n, "Init");
 
-	map<set<string>, int> Routes;
+	/*for (int i = 0; i< n.size(); ++i) {
+		++n[i];
+	}*/
 
-	for (int i = 0; i < NumberOfQueries; ++i) {
-		int AmountOfStops;
-		cin >> AmountOfStops;
-		set<string> stops;
-		for (int stp = 0; stp < AmountOfStops; ++stp) {
-			string stop;
-			cin >> stop;
-			stops.insert(stop);
-		}
-
-		if (Routes.count(stops) == 0) {
-			Routes[stops] = Routes.size()+1;
-			cout << "New bus " << Routes.size() << endl;
-		}
-		else {
-			cout << "Already exists for " << Routes[stops] << endl;
-		}
+	for (auto& i : n) {
+		++i;
 	}
+
+	PrintVector(n, "Inc ");
 
 	return 0;
 }
