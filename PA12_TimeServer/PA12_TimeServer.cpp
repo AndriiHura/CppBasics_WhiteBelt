@@ -7,27 +7,27 @@
 #include <time.h>
 using namespace std;
 
-//string AskTimeServer() {
-//    /* ƒл€ тестировани€ повставл€йте сюда код, реализующий различное поведение этой функии:
-//       * нормальный возврат строкового значени€
-//       * выброс исключени€ system_error
-//       * выброс другого исключени€ с сообщением.
-//    */
-//    unsigned long j;
-//    srand((unsigned)time(NULL));
-//
-//    int x =  rand() % 3;
-//    if (x == 0) {
-//        return"02:03:24";
-//    }
-//    else if (x == 1) {
-//        throw system_error(error_code());
-//    }
-//    else {
-//        throw runtime_error("Too long.");
-//    }
-//    
-//}
+string AskTimeServer() {
+    /* ƒл€ тестировани€ повставл€йте сюда код, реализующий различное поведение этой функии:
+       * нормальный возврат строкового значени€
+       * выброс исключени€ system_error
+       * выброс другого исключени€ с сообщением.
+    */
+    unsigned long j;
+    srand((unsigned)time(NULL));
+
+    int x =  rand() % 3;
+    if (x == 0) {
+        return"02:03:24";
+    }
+    else if (x == 1) {
+        throw system_error(error_code());
+    }
+    else {
+        throw runtime_error("Too long.");
+    }
+    
+}
 
 class TimeServer {
 public:
@@ -53,17 +53,17 @@ private:
     string last_fetched_time = "00:00:00";
 };
 
-//int main() {
-//    // ћен€€ реализацию функции AskTimeServer, убедитесь, что это код работает корректно
-//    TimeServer ts;
-//    try {
-//        cout << ts.GetCurrentTime() << endl;
-//    }
-//    catch (exception& e) {
-//        cout << "Exception got: " << e.what() << endl;
-//    }
-//    return 0;
-//}
+int main() {
+    // ћен€€ реализацию функции AskTimeServer, убедитесь, что это код работает корректно
+    TimeServer ts;
+    try {
+        cout << ts.GetCurrentTime() << endl;
+    }
+    catch (exception& e) {
+        cout << "Exception got: " << e.what() << endl;
+    }
+    return 0;
+}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
